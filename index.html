@@ -112,6 +112,28 @@ input[type="checkbox"]{
     margin-top:8px;
 }
 
+.destacado{
+    grid-column: span 2;
+    border:3px solid #1565c0;
+    background:#f8fbff;
+}
+
+.destacado .resultado-titulo{
+    font-size:22px;
+    font-weight:bold;
+    color:#111;
+}
+
+.destacado .valor{
+    font-size:58px;
+}
+
+.subtexto{
+    font-size:15px;
+    color:#333;
+    margin-top:8px;
+}
+
 .interpretacion{
     margin-top:30px;
     background:#ffffff;
@@ -140,9 +162,9 @@ footer{
     text-align:center;
     margin-top:50px;
     color:#666;
-    font-size:14px;
+    font-size:15px;
     border-top:1px solid #ddd;
-    padding-top:15px;
+    padding-top:18px;
 }
 
 @media(max-width:900px){
@@ -154,6 +176,10 @@ footer{
         grid-template-columns:1fr 1fr;
     }
 
+    .destacado{
+        grid-column: span 2;
+    }
+
     h1{
         font-size:32px;
     }
@@ -162,6 +188,10 @@ footer{
 @media(max-width:600px){
     .resultados{
         grid-template-columns:1fr;
+    }
+
+    .destacado{
+        grid-column: span 1;
     }
 }
 </style>
@@ -228,14 +258,16 @@ y la diversidad beta como recambio entre sitios.
 <div id="alfaPromedio" class="valor">0</div>
 </div>
 
-<div class="resultado-box">
+<div class="resultado-box destacado">
 <div class="resultado-titulo">Gamma regional</div>
 <div id="gamma" class="valor">0</div>
+<div class="subtexto">Número total de especies registradas en la región</div>
 </div>
 
-<div class="resultado-box">
+<div class="resultado-box destacado">
 <div class="resultado-titulo">Beta Whittaker</div>
 <div id="beta" class="valor">0</div>
+<div class="subtexto">Gamma regional / Alfa promedio</div>
 </div>
 
 <div class="resultado-box">
@@ -278,7 +310,7 @@ const especies = [
 const sitios = ["sitio1","sitio2","sitio3"];
 
 function crearTablas(){
-    sitios.forEach((sitio, indiceSitio)=>{
+    sitios.forEach((sitio)=>{
         const tbody = document.getElementById(sitio);
 
         especies.forEach((especie, indiceEspecie)=>{
@@ -350,9 +382,9 @@ function interpretar(alfaPromedio, gamma, beta){
     }
 
     texto += `<br><br>
-    Alfa promedio = riqueza media por sitio. 
-    Gamma = número total de especies registradas en la región. 
-    Beta = gamma / alfa promedio.`;
+    <strong>Alfa promedio</strong> = riqueza media por sitio. 
+    <strong>Gamma regional</strong> = número total de especies registradas en la región. 
+    <strong>Beta Whittaker</strong> = gamma regional / alfa promedio.`;
 
     document.getElementById("textoInterpretacion").innerHTML = texto;
 }
