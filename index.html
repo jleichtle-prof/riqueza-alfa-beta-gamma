@@ -24,7 +24,7 @@ h1{
 
 h2{
     text-align:center;
-    color:#111;
+    color:#2e7d32;
     font-size:25px;
     margin-top:5px;
 }
@@ -58,6 +58,7 @@ h2{
     text-align:center;
     font-size:26px;
     margin-top:0;
+    color:#1b6e2b;
 }
 
 table{
@@ -74,6 +75,7 @@ th,td{
 
 th{
     background:#f3f8f3;
+    color:#123c16;
 }
 
 td:first-child{
@@ -164,6 +166,10 @@ input[type="checkbox"]{
     cursor:pointer;
 }
 
+.btn-reset:hover{
+    background:#0d47a1;
+}
+
 .btn-menu{
     display:inline-block;
     text-decoration:none;
@@ -173,6 +179,10 @@ input[type="checkbox"]{
     color:white;
     font-size:17px;
     font-weight:bold;
+}
+
+.btn-menu:hover{
+    background:#1b5e20;
 }
 
 footer{
@@ -305,7 +315,7 @@ y la diversidad beta como recambio entre sitios.
 </div>
 
 <div class="botones">
-<button class="btn-reset" onclick="reiniciar()">Reiniciar simulación</button>
+<button class="btn-reset" onclick="reiniciar()">↻ Reiniciar simulación</button>
 
 <a class="btn-menu" href="https://jleichtle-prof.github.io/laboratorio-fauna-silvestre/">
 🏠 Menú principal
@@ -318,16 +328,16 @@ Desarrollado por Jorge Leichtle © 2026
 
 <script>
 const especies = [
-    "Zorro culpeo",
-    "Degú",
-    "Guiña",
-    "Chingue",
-    "Turca",
-    "Tiuque",
-    "Tenca",
-    "Lagartija esbelta",
-    "Culebra de cola larga",
-    "Sapito de cuatro ojos"
+    {nombre:"Zorro culpeo", icono:"🦊"},
+    {nombre:"Degú", icono:"🐭"},
+    {nombre:"Guiña", icono:"🐱"},
+    {nombre:"Chingue", icono:"🦨"},
+    {nombre:"Turca", icono:"🐦"},
+    {nombre:"Tiuque", icono:"🦅"},
+    {nombre:"Tenca", icono:"🐦"},
+    {nombre:"Lagartija esbelta", icono:"🦎"},
+    {nombre:"Culebra de cola larga", icono:"🐍"},
+    {nombre:"Sapito de cuatro ojos", icono:"🐸"}
 ];
 
 const sitios = ["sitio1","sitio2","sitio3"];
@@ -340,7 +350,7 @@ function crearTablas(){
             const fila = document.createElement("tr");
 
             fila.innerHTML = `
-                <td>${especie}</td>
+                <td><span style="font-size:22px; margin-right:8px;">${especie.icono}</span> ${especie.nombre}</td>
                 <td>
                     <input 
                         type="checkbox" 
@@ -366,7 +376,7 @@ function calcular(){
 
             if(presente){
                 conteoSitio++;
-                presentesRegional.add(especie);
+                presentesRegional.add(especie.nombre);
             }
         });
 
@@ -428,3 +438,4 @@ calcular();
 
 </body>
 </html>
+
