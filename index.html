@@ -145,9 +145,15 @@ input[type="checkbox"]{
     line-height:1.5;
 }
 
+.botones{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
 .btn-reset{
-    display:block;
-    margin:30px auto 0 auto;
     border:none;
     border-radius:24px;
     padding:12px 22px;
@@ -156,6 +162,17 @@ input[type="checkbox"]{
     font-size:17px;
     font-weight:bold;
     cursor:pointer;
+}
+
+.btn-menu{
+    display:inline-block;
+    text-decoration:none;
+    border-radius:24px;
+    padding:12px 22px;
+    background:#2e7d32;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
 }
 
 footer{
@@ -287,7 +304,13 @@ y la diversidad beta como recambio entre sitios.
 <div id="textoInterpretacion"></div>
 </div>
 
+<div class="botones">
 <button class="btn-reset" onclick="reiniciar()">Reiniciar simulación</button>
+
+<a class="btn-menu" href="https://jleichtle-prof.github.io/laboratorio-fauna-silvestre/">
+🏠 Menú principal
+</a>
+</div>
 
 <footer>
 Desarrollado por Jorge Leichtle © 2026
