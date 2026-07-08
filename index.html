@@ -403,20 +403,80 @@ function calcular(){
 }
 
 function interpretar(alfaPromedio, gamma, beta){
+
     let texto = "";
 
     if(gamma === 0){
-        texto = "No hay especies registradas. Marca especies presentes en los sitios para iniciar el análisis.";
+
+        texto = "No hay especies registradas. Marca especies presentes en uno o más sitios para iniciar el análisis.";
+
     }
-    else if(beta < 1.3){
-        texto = "La diversidad beta es baja. Los sitios comparten muchas especies entre sí, por lo que el recambio espacial de especies es reducido.";
+
+    else if(beta === 1){
+
+        texto = "🟢 <strong>Recambio nulo.</strong> Los tres sitios presentan exactamente la misma composición de especies. La diversidad regional es igual a la diversidad local.";
+
     }
-    else if(beta < 1.8){
-        texto = "La diversidad beta es moderada. Los sitios comparten algunas especies, pero también presentan diferencias en su composición.";
+
+    else if(beta < 1.5){
+
+        texto = "🟢 <strong>Recambio bajo.</strong> La mayoría de las especies son compartidas entre los sitios, existiendo pocas especies exclusivas.";
+
     }
+
+    else if(beta < 2){
+
+        texto = "🟡 <strong>Recambio moderado.</strong> Los sitios comparten parte de sus especies, aunque cada comunidad comienza a aportar especies propias.";
+
+    }
+
+    else if(beta < 2.5){
+
+        texto = "🟠 <strong>Recambio alto.</strong> Las comunidades presentan diferencias importantes en su composición de especies y cada sitio aporta una proporción considerable de especies exclusivas.";
+
+    }
+
+    else if(beta < 3){
+
+        texto = "🔴 <strong>Recambio muy alto.</strong> Los sitios comparten pocas especies y la composición de las comunidades es marcadamente diferente.";
+
+    }
+
     else{
-        texto = "La diversidad beta es alta. Existe un fuerte recambio de especies entre sitios, lo que indica que cada sitio aporta especies distintas a la diversidad regional.";
+
+        texto = "🔴 <strong>Recambio máximo.</strong> Ninguna especie es compartida entre los tres sitios. Cada comunidad posee una composición completamente distinta.";
+
     }
+
+    texto += `
+
+    <br><br>
+
+    <strong>¿Cómo se interpreta el índice?</strong><br>
+
+    El índice beta de Whittaker expresa el grado de recambio de especies entre localidades y se calcula como:
+
+    <br><br>
+
+    <strong>β = γ / α</strong>
+
+    <br><br>
+
+    donde <strong>γ</strong> corresponde al número total de especies registradas en toda la región y <strong>α</strong> corresponde a la riqueza promedio de especies por sitio.
+
+    <br><br>
+
+    En este simulador, que compara <strong>tres sitios</strong>, el índice varía entre <strong>1 y 3</strong>.
+
+    <ul style="margin-top:10px; line-height:1.6;">
+        <li><strong>β = 1:</strong> todos los sitios poseen exactamente las mismas especies.</li>
+        <li><strong>β cercano a 1:</strong> existe poco recambio de especies entre comunidades.</li>
+        <li><strong>β cercano a 3:</strong> las comunidades comparten pocas o ninguna especie, indicando un elevado recambio.</li>
+    </ul>`;
+
+    document.getElementById("textoInterpretacion").innerHTML = texto;
+
+}
 
     texto += `<br><br>
     <strong>α alfa promedio</strong> = riqueza media por sitio. 
