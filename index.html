@@ -232,7 +232,7 @@ footer{
 <p class="descripcion">
 Marca la presencia o ausencia de cada especie en tres sitios de muestreo. 
 El simulador calcula automáticamente la riqueza alfa local, la riqueza gamma regional 
-y la diversidad beta como recambio entre sitios.
+y la diversidad beta de Whittaker como relación entre gamma regional y alfa promedio.
 </p>
 
 <div class="contenedor-sitios">
@@ -288,13 +288,13 @@ y la diversidad beta como recambio entre sitios.
 <div class="resultado-box destacado">
 <div class="resultado-titulo">Gamma regional</div>
 <div id="gamma" class="valor">0</div>
-<div class="subtexto">Número total de especies registradas en la región</div>
+<div class="subtexto">γ = número total de especies registradas en la región</div>
 </div>
 
 <div class="resultado-box destacado">
 <div class="resultado-titulo">Beta Whittaker</div>
 <div id="beta" class="valor">0</div>
-<div class="subtexto">Gamma regional / Alfa promedio</div>
+<div class="subtexto">β = γ / α</div>
 </div>
 
 <div class="resultado-box">
@@ -385,6 +385,10 @@ function calcular(){
 
     const alfaPromedio = (alfa[0] + alfa[1] + alfa[2]) / 3;
     const gamma = presentesRegional.size;
+
+    // Fórmula utilizada en este simulador:
+    // β = γ / α
+    // donde γ es la riqueza regional y α es la riqueza alfa promedio.
     const beta = alfaPromedio > 0 ? gamma / alfaPromedio : 0;
 
     document.getElementById("alfa1").innerText = alfa[0];
@@ -415,9 +419,9 @@ function interpretar(alfaPromedio, gamma, beta){
     }
 
     texto += `<br><br>
-    <strong>Alfa promedio</strong> = riqueza media por sitio. 
-    <strong>Gamma regional</strong> = número total de especies registradas en la región. 
-    <strong>Beta Whittaker</strong> = gamma regional / alfa promedio.`;
+    <strong>α alfa promedio</strong> = riqueza media por sitio. 
+    <strong>γ gamma regional</strong> = número total de especies registradas en la región. 
+    <strong>β Whittaker</strong> = γ / α.`;
 
     document.getElementById("textoInterpretacion").innerHTML = texto;
 }
@@ -438,4 +442,3 @@ calcular();
 
 </body>
 </html>
-
