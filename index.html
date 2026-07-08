@@ -451,31 +451,43 @@ function interpretar(alfaPromedio, gamma, beta){
     texto += `
  
     <br><br>
- 
+
     <strong>¿Cómo se interpreta el índice?</strong><br>
- 
+
     El índice beta de Whittaker expresa el grado de recambio de especies entre localidades y se calcula como:
- 
+
     <br><br>
- 
+
     <strong>β = γ / α</strong>
- 
+
     <br><br>
- 
+
     donde <strong>γ</strong> corresponde al número total de especies registradas en toda la región y <strong>α</strong> corresponde a la riqueza promedio de especies por sitio.
- 
+
     <br><br>
- 
-    En este simulador, que compara <strong>tres sitios</strong>, el índice varía entre <strong>1 y 3</strong>.
- 
+
+    El índice presenta un <strong>valor mínimo de 1</strong>, el cual ocurre cuando todas las localidades poseen exactamente las mismas especies.
+
+    Su <strong>valor máximo depende del número de localidades comparadas</strong> y se alcanza cuando ninguna especie es compartida entre ellas.
+
+    <br><br>
+
+    En este simulador se comparan <strong>tres sitios</strong>, por lo que el índice puede variar entre <strong>1 y 3</strong>.
+
     <ul style="margin-top:10px; line-height:1.6;">
-        <li><strong>β = 1:</strong> todos los sitios poseen exactamente las mismas especies.</li>
-        <li><strong>β cercano a 1:</strong> existe poco recambio de especies entre comunidades.</li>
-        <li><strong>β cercano a 3:</strong> las comunidades comparten pocas o ninguna especie, indicando un elevado recambio.</li>
+
+        <li><strong>β = 1:</strong> todos los sitios poseen exactamente la misma composición de especies.</li>
+
+        <li><strong>β cercano a 1:</strong> indica un bajo recambio de especies entre localidades, ya que la mayoría de las especies son compartidas.</li>
+
+        <li><strong>β cercano a 3:</strong> indica un recambio muy alto de especies entre localidades, existiendo pocas o ninguna especie compartida entre los tres sitios.</li>
+
+        <li><strong>Ejemplo:</strong> si se compararan cuatro localidades, el índice podría variar entre <strong>1 y 4</strong>; si se compararan cinco localidades, entre <strong>1 y 5</strong>.</li>
+
     </ul>`;
- 
+
     document.getElementById("textoInterpretacion").innerHTML = texto;
- 
+
 }
  
 function reiniciar(){
