@@ -147,6 +147,25 @@ input[type="checkbox"]{
     line-height:1.5;
 }
  
+.btn-ver{
+    width:auto;
+    height:auto;
+    border:none;
+    border-radius:24px;
+    padding:11px 20px;
+    margin-top:12px;
+    margin-bottom:12px;
+    background:#2e7d32;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-ver:hover{
+    background:#1b5e20;
+}
+
 .botones{
     display:flex;
     justify-content:center;
@@ -317,8 +336,10 @@ y la diversidad beta de Whittaker como relación entre gamma regional y alfa pro
 👁️ Ver interpretación
 </button>
 
-<div id="bloqueInterpretacion" class="oculto">
+<div id="bloqueInterpretacion" style="display:none;">
 <div id="textoInterpretacion"></div>
+</div>
+
 </div>
 
 </div>
@@ -504,30 +525,29 @@ function toggleInterpretacion(){
     const bloque = document.getElementById("bloqueInterpretacion");
     const boton = document.getElementById("btnInterpretacion");
 
-    if(bloque.classList.contains("oculto")){
-        bloque.classList.remove("oculto");
+    if(bloque.style.display === "none" || bloque.style.display === ""){
+        bloque.style.display = "block";
         boton.innerText = "🙈 Ocultar interpretación";
     }
     else{
-        bloque.classList.add("oculto");
+        bloque.style.display = "none";
         boton.innerText = "👁️ Ver interpretación";
     }
 }
 
 function ocultarInterpretacion(){
 
-    document.getElementById("bloqueInterpretacion").classList.add("oculto");
+    document.getElementById("bloqueInterpretacion").style.display = "none";
     document.getElementById("btnInterpretacion").innerText = "👁️ Ver interpretación";
 
 }
 
 function reiniciar(){
-    sitios.forEach((sitio)=>{
+sitios.forEach((sitio)=>{
         especies.forEach((especie, i)=>{
             document.getElementById(`${sitio}_${i}`).checked = false;
         });
     });
- 
     calcular();
     ocultarInterpretacion();
 }
