@@ -310,8 +310,25 @@ y la diversidad beta de Whittaker como relación entre gamma regional y alfa pro
 </div>
  
 <div class="interpretacion">
+
 <strong>Interpretación:</strong>
+<br>
+
+<button
+id="btnInterpretacion"
+class="btn-ver"
+onclick="toggleInterpretacion()">
+
+👁️ Ver interpretación
+
+</button>
+
+<div id="bloqueInterpretacion" class="oculto">
+
 <div id="textoInterpretacion"></div>
+
+</div>
+
 </div>
  
 <div class="botones">
@@ -490,6 +507,27 @@ function interpretar(alfaPromedio, gamma, beta){
 
 }
  
+function toggleInterpretacion(){
+
+    const bloque=document.getElementById("bloqueInterpretacion");
+    const boton=document.getElementById("btnInterpretacion");
+
+    if(bloque.classList.contains("oculto")){
+        bloque.classList.remove("oculto");
+        boton.innerText="🙈 Ocultar interpretación";
+    }else{
+        bloque.classList.add("oculto");
+        boton.innerText="👁️ Ver interpretación";
+    }
+}
+
+function ocultarInterpretacion(){
+
+    document.getElementById("bloqueInterpretacion").classList.add("oculto");
+    document.getElementById("btnInterpretacion").innerText="👁️ Ver interpretación";
+
+}
+
 function reiniciar(){
     sitios.forEach((sitio)=>{
         especies.forEach((especie, i)=>{
@@ -498,6 +536,7 @@ function reiniciar(){
     });
  
     calcular();
+    ocultarInterpretacion();
 }
  
 crearTablas();
